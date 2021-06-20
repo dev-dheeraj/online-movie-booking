@@ -1,0 +1,13 @@
+.top-head-card{
+    margin: 15px 0px 15px 0px;
+    cursor: pointer
+}
+.imageSlider{
+    height : 50vh
+}
+.ticket-card{
+    margin: 5% 20% 10px 20%;
+}
+.ticket-sub-card{
+    margin: 0 20% 10px 20%;
+}
