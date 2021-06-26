@@ -9,7 +9,7 @@ import {
     ListGroup
 } from "react-bootstrap";
 import { moviesActions } from '../landingPage/actions/movies.action';
-import {history} from '../../_helpers/history';
+import history from '../../_helpers/history';
 
 
  class MoviesDetailPage extends Component {
@@ -31,19 +31,21 @@ import {history} from '../../_helpers/history';
       
 
       componentWillReceiveProps=(nextProps)=>{
-          if(nextProps && nextProps.latestMovies && nextProps.latestMovies.movies_list && nextProps.latestMovies.movies_list.length){
+          console.log('selected Movies list  : ',nextProps.latestMovies)
+          if(nextProps && nextProps.latestMovies && nextProps.latestMovies.movies_list && nextProps.latestMovies.movies_list._id){
               this.setState({
-                  movieDetails :nextProps.latestMovies.movies_list[0]
+                  movieDetails :nextProps.latestMovies.movies_list
                 })          
         }
         else if(nextProps.latestMovies.error){
             console.log('Movies list error : ',nextProps.latestMovies.error)
-    
+            history.push('/')
+            
         }
     }
     handleBookNow = ()=>{
         // history.push('booking-ticket')
-        window.location.href = `/booking-ticket/${this.state.movieDetails._id}`
+        history.push(`/booking-ticket/${this.state.movieDetails._id}`)
 
     }
     
@@ -70,18 +72,18 @@ import {history} from '../../_helpers/history';
                                     </Card.Body>
                                 </Card>
                             </Col>
-                            {movieDetails.name ?  <Col xs={0} md={6} sm={6} lg={4}>
+                              <Col xs={0} md={6} sm={6} lg={4}>
                                 <Card style = {{margin : '10px'}}>
                                     <Card.Body>
-                                        <Card.Title>Release Date : {movieDetails.release}</Card.Title>
+                                        <Card.Title>Release Date : {movieDetails.release ? movieDetails.release : 'Not availabe'}</Card.Title>
                                     </Card.Body>
                                 </Card>
-                            </Col>: null }
+                            </Col>
                             
                             <Col xs={12} md={12} sm={12}>
                                 <Card style = {{margin : '15px'}}>
                                     <Card.Body>
-                                        <Card.Title>Movie Duration : {movieDetails.duration ? movieDetails.duration : '2hr' } </Card.Title>
+                                        <Card.Title>Movie Duration : {movieDetails.duration ? movieDetails.duration : '2 Hr' } </Card.Title>
                                     </Card.Body>
                                 </Card>
                             </Col>

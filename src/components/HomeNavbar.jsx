@@ -6,6 +6,7 @@ import {
   Nav,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import history from '../_helpers/history'
 
 import "../App.css";
 
@@ -16,6 +17,7 @@ class HomeNavbar extends React.Component {
 
   rendertoHome = ()=>{
     window.location.href = `/`
+    // history.push('/')
   }
 
   render() {

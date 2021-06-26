@@ -49,9 +49,9 @@ class TicketBookingPage extends Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps && nextProps.latestMovies && nextProps.latestMovies.movies_list && nextProps.latestMovies.movies_list.length) {
+        if (nextProps && nextProps.latestMovies && nextProps.latestMovies.movies_list && nextProps.latestMovies.movies_list._id) {
             this.setState({
-                movieDetails: nextProps.latestMovies.movies_list[0]
+                movieDetails: nextProps.latestMovies.movies_list
             })
         }
         else if (nextProps.latestMovies.error) {
@@ -83,6 +83,8 @@ class TicketBookingPage extends Component {
                 isBookingStart: true,
                 bookingData: data
             })
+        }else{
+            alert('Please select all the fields !')
         }
 
 

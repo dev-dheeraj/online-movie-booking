@@ -1,12 +1,7 @@
 
 import React from 'react'
 import {
-    Row,
-    Col,
-    Card,
     Carousel,
-    Button,
-    ListGroup
 } from "react-bootstrap";
 
 const LatestMoviesSlider = (props) => {

@@ -1,14 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { history } from '../../_helpers/history'
 import {
     Row,
     Col,
-    Card,
-    Carousel,
-    Button,
-    ListGroup
 } from "react-bootstrap";
+import history from "../../_helpers/history";
 
 import MovieCard from './MovieCard'
 import { moviesActions } from '../landingPage/actions/movies.action'
@@ -23,23 +19,20 @@ class MoviesList extends React.Component {
     }
 
     handleBookMovieButton = (item) => {
-        console.log('movie book clicekd : ', { movieId: item._id })
         this.setState({ isBooking: true })
         this.props.dispatch(moviesActions.getMovieDetails({ movieId: item._id }));
     }
 
     componentWillReceiveProps = (nextProps) => {
         if (nextProps && nextProps.latestMovies && nextProps.latestMovies.movies_list && this.state.isBooking == true) {
-            // console.log('movies list : ',nextProps.latestMovies.movies_list)
-            // history.push("/moviesDetail");
-            var id = nextProps.latestMovies.movies_list[0]  && nextProps.latestMovies.movies_list[0]._id
+            var id = nextProps.latestMovies.movies_list  && nextProps.latestMovies.movies_list._id
             if(id){
-                window.location.href = `/moviesDetail/${id}`
+                history.push(`/moviesDetail/${id}`)
+
             }
         }
         else if (nextProps.latestMovies.error) {
             console.log('Movies list error : ', nextProps.latestMovies.error)
-            // window.location.href = `/`
         }
     }
 
